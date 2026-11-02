@@ -1,0 +1,100 @@
+{
+  "scenario": "Retrospective, season-level historical crop-yield estimation",
+  "target": "Yield",
+  "yield_unit": "Unknown; not specified by the dataset documentation.",
+  "features": [
+    "Year",
+    "Temperature",
+    "Rainfall",
+    "Humidity",
+    "pH",
+    "Nitrogen",
+    "Phosphorus",
+    "Potassium",
+    "Fertilizer",
+    "Pesticide",
+    "State",
+    "District",
+    "Crop",
+    "Season",
+    "Soil Type"
+  ],
+  "excluded_columns": [
+    "record_id",
+    "Region",
+    "temp_src",
+    "rain_src",
+    "pest_src"
+  ],
+  "split": {
+    "method": "Chronological by Year",
+    "train_years": [
+      1966,
+      2011
+    ],
+    "validation_years": [
+      2012,
+      2014
+    ],
+    "test_years": [
+      2015,
+      2017
+    ],
+    "train_records": 175478,
+    "validation_records": 11148,
+    "test_records": 10615
+  },
+  "preprocessing": {
+    "numeric": "StandardScaler fitted on training records only",
+    "categorical": "OneHotEncoder(handle_unknown='ignore') fitted on training records only",
+    "target": "StandardScaler fitted on training records only",
+    "record_removal": "None"
+  },
+  "model": {
+    "implementation": "sklearn.neural_network.MLPRegressor",
+    "architecture": [
+      64,
+      32
+    ],
+    "activation": "relu",
+    "optimizer": "adam",
+    "epochs": 40,
+    "batch_size": 1024,
+    "random_state": 42
+  },
+  "metrics": {
+    "train": {
+      "mae": 216.31454373624132,
+      "rmse": 365.68056632059097,
+      "r2": 0.9365625555465995
+    },
+    "validation": {
+      "mae": 367.32939721842865,
+      "rmse": 588.0670083736683,
+      "r2": 0.8739589092072382
+    },
+    "test": {
+      "mae": 423.37925016800074,
+      "rmse": 736.4141097878007,
+      "r2": 0.8096314750523101
+    }
+  },
+  "limitations": [
+    "Yield unit and definition are unknown, so metric magnitudes have no confirmed physical unit.",
+    "This is retrospective historical estimation, not operational pre-season or during-season forecasting.",
+    "Weather temporal aggregation and input timing are undocumented.",
+    "Fertilizer and pesticide semantics and timing are undocumented.",
+    "Source and backfill metadata were excluded from predictors to reduce leakage risk.",
+    "The chronological test evaluates later historical years, not future operational deployment.",
+    "No records were removed; outliers and quality flags remain in the data."
+  ],
+  "artifacts": {
+    "model": "models/ann_model.joblib",
+    "preprocessor": "models/ann_preprocessor.joblib",
+    "target_scaler": "models/ann_target_scaler.joblib",
+    "training_history": "reports/ann_training_history.json",
+    "metrics": "reports/ann_metrics.json",
+    "loss_plot": "reports/plots/ann_training_validation_loss.png",
+    "actual_predicted_plot": "reports/plots/ann_actual_vs_predicted.png"
+  }
+}

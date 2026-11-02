@@ -1,0 +1,470 @@
+{
+  "source_dataset": {
+    "path": "crop_yield_model_ready.csv",
+    "sha256_before": "93727bc1aa298e3ebe8c8443afd89f53f88a85dd25e03c43f6205ff440b496fd",
+    "record_count": 197241,
+    "column_count": 20
+  },
+  "operations": [
+    {
+      "operation": "exact_duplicate_verification",
+      "result": "No exact duplicate records found; no records removed.",
+      "records_removed": 0,
+      "verified_source_duplicate_count": 0
+    },
+    {
+      "operation": "missing_value_handling",
+      "result": "No missing cells found; no imputation or row removal performed.",
+      "missing_cells": 0
+    },
+    {
+      "operation": "numeric_validation",
+      "result": "Numeric fields were parse-checked and serialized canonically; no non-numeric values found. Negative temperatures were retained and flagged for domain review.",
+      "numeric_format_changes": 123345
+    },
+    {
+      "operation": "outlier_detection",
+      "result": "Tukey IQR flags were added; no statistical outliers were deleted.",
+      "method": "Q1 - 1.5*IQR and Q3 + 1.5*IQR per numeric column"
+    },
+    {
+      "operation": "categorical_standardization",
+      "result": "Trimmed leading/trailing whitespace and collapsed repeated internal whitespace only; no category meanings were merged.",
+      "changed_cells": 0
+    },
+    {
+      "operation": "provenance_and_quality_flags",
+      "result": "Original provenance columns were preserved; derived dq_* review flags were added to the cleaned dataset."
+    },
+    {
+      "operation": "record_traceability",
+      "result": "Added stable record_id based on original row order; values are row_000001 through row_197241."
+    }
+  ],
+  "retention": {
+    "source_records": 197241,
+    "records_retained": 197241,
+    "records_removed": 0,
+    "retention_rate": 1.0,
+    "normalized_duplicate_count_after_cleaning": 0
+  },
+  "quality_flag_counts": {
+    "dq_missing_any": 0,
+    "dq_negative_temperature": 382,
+    "dq_non_numeric_any": 0,
+    "dq_backfilled_or_normal_source": 85803,
+    "dq_categorical_normalized": 0,
+    "dq_iqr_outlier_year": 0,
+    "dq_iqr_outlier_temperature": 10798,
+    "dq_iqr_outlier_rainfall": 9628,
+    "dq_iqr_outlier_humidity": 0,
+    "dq_iqr_outlier_ph": 0,
+    "dq_iqr_outlier_nitrogen": 6930,
+    "dq_iqr_outlier_phosphorus": 5432,
+    "dq_iqr_outlier_potassium": 21936,
+    "dq_iqr_outlier_fertilizer": 5212,
+    "dq_iqr_outlier_pesticide": 0,
+    "dq_iqr_outlier_yield": 17912,
+    "dq_any_quality_flag": 125377
+  },
+  "output_files": {
+    "cleaned": "data\\processed\\crop_yield_cleaned.csv",
+    "model_ready": "data\\processed\\crop_yield_model_ready.csv"
+  },
+  "model_ready_definition": {
+    "columns": [
+      "record_id",
+      "Year",
+      "State",
+      "District",
+      "Region",
+      "Crop",
+      "Season",
+      "Temperature",
+      "Rainfall",
+      "Humidity",
+      "Soil Type",
+      "pH",
+      "Nitrogen",
+      "Phosphorus",
+      "Potassium",
+      "Fertilizer",
+      "Pesticide",
+      "Yield",
+      "temp_src",
+      "rain_src",
+      "pest_src"
+    ],
+    "feature_columns": [
+      "Year",
+      "State",
+      "District",
+      "Region",
+      "Crop",
+      "Season",
+      "Temperature",
+      "Rainfall",
+      "Humidity",
+      "Soil Type",
+      "pH",
+      "Nitrogen",
+      "Phosphorus",
+      "Potassium",
+      "Fertilizer",
+      "Pesticide"
+    ],
+    "target_column": "Yield",
+    "provenance_columns": [
+      "temp_src",
+      "rain_src",
+      "pest_src"
+    ],
+    "excluded_from_model_inputs": [
+      "record_id",
+      "temp_src",
+      "rain_src",
+      "pest_src",
+      "Yield"
+    ],
+    "note": "Provenance columns are retained for traceability but should not automatically be used as predictors without leakage review."
+  },
+  "verification": {
+    "cleaned_reopened": true,
+    "model_ready_reopened": true,
+    "cleaned_record_count": 197241,
+    "model_ready_record_count": 197241,
+    "cleaned_columns": [
+      "record_id",
+      "Year",
+      "State",
+      "District",
+      "Region",
+      "Crop",
+      "Season",
+      "Temperature",
+      "Rainfall",
+      "Humidity",
+      "Soil Type",
+      "pH",
+      "Nitrogen",
+      "Phosphorus",
+      "Potassium",
+      "Fertilizer",
+      "Pesticide",
+      "Yield",
+      "temp_src",
+      "rain_src",
+      "pest_src",
+      "dq_missing_any",
+      "dq_negative_temperature",
+      "dq_non_numeric_any",
+      "dq_backfilled_or_normal_source",
+      "dq_categorical_normalized",
+      "dq_iqr_outlier_year",
+      "dq_iqr_outlier_temperature",
+      "dq_iqr_outlier_rainfall",
+      "dq_iqr_outlier_humidity",
+      "dq_iqr_outlier_ph",
+      "dq_iqr_outlier_nitrogen",
+      "dq_iqr_outlier_phosphorus",
+      "dq_iqr_outlier_potassium",
+      "dq_iqr_outlier_fertilizer",
+      "dq_iqr_outlier_pesticide",
+      "dq_iqr_outlier_yield",
+      "dq_any_quality_flag"
+    ],
+    "model_ready_columns": [
+      "record_id",
+      "Year",
+      "State",
+      "District",
+      "Region",
+      "Crop",
+      "Season",
+      "Temperature",
+      "Rainfall",
+      "Humidity",
+      "Soil Type",
+      "pH",
+      "Nitrogen",
+      "Phosphorus",
+      "Potassium",
+      "Fertilizer",
+      "Pesticide",
+      "Yield",
+      "temp_src",
+      "rain_src",
+      "pest_src"
+    ],
+    "cleaned_type_checks": {
+      "record_id": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "Year": {
+        "expected": "integer",
+        "non_parseable_count": 0,
+        "integer_valued_count": 197241
+      },
+      "State": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "District": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "Region": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "Crop": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "Season": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "Temperature": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 1714
+      },
+      "Rainfall": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 39091
+      },
+      "Humidity": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 20751
+      },
+      "Soil Type": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "pH": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 9271
+      },
+      "Nitrogen": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 3347
+      },
+      "Phosphorus": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 3675
+      },
+      "Potassium": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 7682
+      },
+      "Fertilizer": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 3174
+      },
+      "Pesticide": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 0
+      },
+      "Yield": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 34640
+      },
+      "temp_src": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "rain_src": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "pest_src": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "dq_missing_any": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_negative_temperature": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_non_numeric_any": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_backfilled_or_normal_source": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_categorical_normalized": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_iqr_outlier_year": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_iqr_outlier_temperature": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_iqr_outlier_rainfall": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_iqr_outlier_humidity": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_iqr_outlier_ph": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_iqr_outlier_nitrogen": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_iqr_outlier_phosphorus": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_iqr_outlier_potassium": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_iqr_outlier_fertilizer": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_iqr_outlier_pesticide": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_iqr_outlier_yield": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      },
+      "dq_any_quality_flag": {
+        "expected": "boolean",
+        "invalid_boolean_count": 0
+      }
+    },
+    "model_ready_type_checks": {
+      "record_id": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "Year": {
+        "expected": "integer",
+        "non_parseable_count": 0,
+        "integer_valued_count": 197241
+      },
+      "State": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "District": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "Region": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "Crop": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "Season": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "Temperature": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 1714
+      },
+      "Rainfall": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 39091
+      },
+      "Humidity": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 20751
+      },
+      "Soil Type": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "pH": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 9271
+      },
+      "Nitrogen": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 3347
+      },
+      "Phosphorus": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 3675
+      },
+      "Potassium": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 7682
+      },
+      "Fertilizer": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 3174
+      },
+      "Pesticide": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 0
+      },
+      "Yield": {
+        "expected": "float",
+        "non_parseable_count": 0,
+        "integer_valued_count": 34640
+      },
+      "temp_src": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "rain_src": {
+        "expected": "string",
+        "blank_count": 0
+      },
+      "pest_src": {
+        "expected": "string",
+        "blank_count": 0
+      }
+    },
+    "source_sha256_after": "93727bc1aa298e3ebe8c8443afd89f53f88a85dd25e03c43f6205ff440b496fd",
+    "source_unchanged": true
+  },
+  "limitations": [
+    "CSV files do not carry native data types; type verification was performed by parse checks and canonical serialization.",
+    "Negative Temperature values were not removed because their validity cannot be determined without units and geography-specific metadata.",
+    "IQR outliers were retained because genuine agricultural observations must not be deleted automatically.",
+    "Yield unit remains unspecified."
+  ]
+}

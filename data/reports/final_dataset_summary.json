@@ -1,0 +1,156 @@
+{
+  "dataset_path": "data\\processed\\crop_yield_model_ready.csv",
+  "record_count": 197241,
+  "column_count": 21,
+  "columns": [
+    "record_id",
+    "Year",
+    "State",
+    "District",
+    "Region",
+    "Crop",
+    "Season",
+    "Temperature",
+    "Rainfall",
+    "Humidity",
+    "Soil Type",
+    "pH",
+    "Nitrogen",
+    "Phosphorus",
+    "Potassium",
+    "Fertilizer",
+    "Pesticide",
+    "Yield",
+    "temp_src",
+    "rain_src",
+    "pest_src"
+  ],
+  "feature_columns": [
+    "Year",
+    "State",
+    "District",
+    "Region",
+    "Crop",
+    "Season",
+    "Temperature",
+    "Rainfall",
+    "Humidity",
+    "Soil Type",
+    "pH",
+    "Nitrogen",
+    "Phosphorus",
+    "Potassium",
+    "Fertilizer",
+    "Pesticide"
+  ],
+  "target_column": "Yield",
+  "provenance_columns": [
+    "temp_src",
+    "rain_src",
+    "pest_src"
+  ],
+  "record_identifier": "record_id",
+  "records_removed": 0,
+  "records_retained": 197241,
+  "missing_cells_in_model_ready": 0,
+  "exact_duplicates_in_model_ready": 0,
+  "type_verification": {
+    "record_id": {
+      "expected": "string",
+      "blank_count": 0
+    },
+    "Year": {
+      "expected": "integer",
+      "non_parseable_count": 0,
+      "integer_valued_count": 197241
+    },
+    "State": {
+      "expected": "string",
+      "blank_count": 0
+    },
+    "District": {
+      "expected": "string",
+      "blank_count": 0
+    },
+    "Region": {
+      "expected": "string",
+      "blank_count": 0
+    },
+    "Crop": {
+      "expected": "string",
+      "blank_count": 0
+    },
+    "Season": {
+      "expected": "string",
+      "blank_count": 0
+    },
+    "Temperature": {
+      "expected": "float",
+      "non_parseable_count": 0,
+      "integer_valued_count": 1714
+    },
+    "Rainfall": {
+      "expected": "float",
+      "non_parseable_count": 0,
+      "integer_valued_count": 39091
+    },
+    "Humidity": {
+      "expected": "float",
+      "non_parseable_count": 0,
+      "integer_valued_count": 20751
+    },
+    "Soil Type": {
+      "expected": "string",
+      "blank_count": 0
+    },
+    "pH": {
+      "expected": "float",
+      "non_parseable_count": 0,
+      "integer_valued_count": 9271
+    },
+    "Nitrogen": {
+      "expected": "float",
+      "non_parseable_count": 0,
+      "integer_valued_count": 3347
+    },
+    "Phosphorus": {
+      "expected": "float",
+      "non_parseable_count": 0,
+      "integer_valued_count": 3675
+    },
+    "Potassium": {
+      "expected": "float",
+      "non_parseable_count": 0,
+      "integer_valued_count": 7682
+    },
+    "Fertilizer": {
+      "expected": "float",
+      "non_parseable_count": 0,
+      "integer_valued_count": 3174
+    },
+    "Pesticide": {
+      "expected": "float",
+      "non_parseable_count": 0,
+      "integer_valued_count": 0
+    },
+    "Yield": {
+      "expected": "float",
+      "non_parseable_count": 0,
+      "integer_valued_count": 34640
+    },
+    "temp_src": {
+      "expected": "string",
+      "blank_count": 0
+    },
+    "rain_src": {
+      "expected": "string",
+      "blank_count": 0
+    },
+    "pest_src": {
+      "expected": "string",
+      "blank_count": 0
+    }
+  },
+  "source_dataset_unchanged": true,
+  "use_note": "Use feature_columns for modeling; provenance_columns are retained metadata and should be evaluated for source leakage before use as predictors."
+}
