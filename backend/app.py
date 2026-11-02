@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 
 from backend.config import DATA_PATH, DATABASE_PATH, METRICS_PATH
 from backend.database.db import initialize
@@ -19,6 +20,16 @@ def create_app(test_config=None) -> Flask:
     )
     if test_config:
         app.config.update(test_config)
+
+    CORS(
+        app,
+        resources={
+            r"/api/*": {
+                "origins": ["https://crop-yield-estimation-ten.vercel.app"],
+                "methods": ["GET", "POST", "OPTIONS"],
+            }
+        },
+    )
 
     initialize(app.config["DATABASE_PATH"])
     app.extensions["model_service"] = ModelService()
